@@ -14,7 +14,7 @@ func main() {
 	fmt.Print("Ingrese el valor en dólares: ")
 	fmt.Scan(&dolares)
 
-	fmt.Print("Ingrese la moneda (EUR, LB, WON, BTC): ")
+	fmt.Print("Ingrese la moneda, tipo en el formato que muestra como EUR, LB, WON y BTC: ")
 	fmt.Scan(&moneda)
 
 	resultado := conversor.Convertir(dolares, moneda)
