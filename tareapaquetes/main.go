@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"tareapaquetes/conversor"
 	"tareapaquetes/vocales"
 )
@@ -14,16 +16,18 @@ func main() {
 	fmt.Print("Ingrese el valor en dólares: ")
 	fmt.Scan(&dolares)
 
-	fmt.Print("Ingrese la moneda, tipo en el formato que muestra como EUR, LB, WON y BTC: ")
+	fmt.Print("Ingrese la moneda, tipo EUR, LB, WON o BTC: ")
 	fmt.Scan(&moneda)
 
 	resultado := conversor.Convertir(dolares, moneda)
 	fmt.Println("El valor convertido es:", resultado)
 
-	var frase string
+	lector := bufio.NewReader(os.Stdin)
 
-	fmt.Print("Ingrese una palabra: ")
-	fmt.Scan(&frase)
+	lector.ReadString('\n')
+
+	fmt.Print("Ingrese una palabra o frase: ")
+	frase, _ := lector.ReadString('\n')
 
 	a, e, i, o, u := vocales.Contar(frase)
 

@@ -12,19 +12,19 @@ func Contar(frase string) (int, int, int, int, int) {
 
 		switch letra {
 
-		case 'a', 'A':
+		case 'a', 'A', 'á':
 			a++
 
-		case 'e', 'E':
+		case 'e', 'E', 'é':
 			e++
 
-		case 'i', 'I':
+		case 'i', 'I', 'í':
 			i++
 
-		case 'o', 'O':
+		case 'o', 'O', 'ó':
 			o++
 
-		case 'u', 'U':
+		case 'u', 'U', 'ú', 'ü':
 			u++
 		}
 	}
