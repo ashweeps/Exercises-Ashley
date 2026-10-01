@@ -2,11 +2,9 @@ package main
 
 import "fmt"
 
-// Variables globales
 var productosVendidos []string
 var subtotales []float64
 
-// Función para registrar una venta
 func RegistrarVenta(nombre string, precio float64, cantidad int) {
 	subtotal := precio * float64(cantidad)
 
@@ -16,7 +14,6 @@ func RegistrarVenta(nombre string, precio float64, cantidad int) {
 	fmt.Println("Venta registrada correctamente.")
 }
 
-// Función para mostrar estadísticas
 func MostrarEstadisticas() {
 	if len(subtotales) == 0 {
 		fmt.Println("No existen ventas registradas.")
@@ -32,32 +29,31 @@ func MostrarEstadisticas() {
 	fmt.Println("Total recaudado: $", total)
 }
 
-// Función principal
 func main() {
 	opcion := 0
 
 	for opcion != 3 {
-		fmt.Println("\n--- MENU ---")
-		fmt.Println("1. Registrar nueva venta")
-		fmt.Println("2. Mostrar estadisticas")
-		fmt.Println("3. Salir")
+		fmt.Println("MENU")
+		fmt.Println("1.Registrar nueva venta")
+		fmt.Println("2.Mostrar estadisticas")
+		fmt.Println("3.Salir")
 		fmt.Print("Seleccione una opcion: ")
 		fmt.Scan(&opcion)
 
 		switch opcion {
 
 		case 1:
-			fmt.Println("\n--- PRODUCTOS ---")
-			fmt.Println("1. Arroz - $1.25")
-			fmt.Println("2. Leche - $0.95")
-			fmt.Println("3. Pan - $0.50")
+			fmt.Println("PRODUCTOS")
+			fmt.Println("1.Arroz - $1.25")
+			fmt.Println("2.Leche - $0.95")
+			fmt.Println("3.Pan - $0.50")
 
 			var producto int
 			var cantidad int
 			var nombre string
 			var precio float64
 
-			fmt.Print("Seleccione el producto: ")
+			fmt.Print("Seleccione el producto por el numero del literal: ")
 			fmt.Scan(&producto)
 
 			switch producto {
