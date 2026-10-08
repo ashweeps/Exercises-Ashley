@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func ActividadGanadora(votos map[string]int) string {
+func Ganadora(votos map[string]int) string {
 
 	var ganadora string
 	mayor := 0
@@ -32,12 +32,12 @@ func main() {
 
 	for i := 1; i <= 5; i++ {
 
-		fmt.Println("\nVOTO", i)
+		fmt.Println("Voto", i)
 
-		fmt.Println("1. Deportes")
-		fmt.Println("2. Videojuegos")
-		fmt.Println("3. Cine")
-		fmt.Println("4. Musica")
+		fmt.Println("1.Deportes")
+		fmt.Println("2.Videojuegos")
+		fmt.Println("3.Cine")
+		fmt.Println("4.Musica")
 
 		fmt.Print("Seleccione una actividad: ")
 		fmt.Scan(&opcion)
@@ -68,7 +68,7 @@ func main() {
 		fmt.Println(actividad, ":", cantidad, "votos")
 	}
 
-	ganadora := ActividadGanadora(votos)
+	ganadora := Ganadora(votos)
 
 	fmt.Println("Actividad con mas votos:", ganadora)
 }
