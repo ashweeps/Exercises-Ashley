@@ -50,16 +50,16 @@ func main() {
 		sumaGeneral += promedio
 	}
 
-	fmt.Println("\nRESULTADOS")
+	fmt.Println("Resultado: ")
 
 	for p := 0; p < 6; p++ {
 
-		fmt.Println("\nEstudiante", p+1)
+		fmt.Println("Estudiante", p+1)
 
 		fmt.Println("Promedio:", promedios[p])
 		fmt.Println("Nota mas alta:", notasAltas[p])
 		fmt.Println("Nota mas baja:", notasBajas[p])
 	}
 
-	fmt.Println("\nPromedio general de la clase:", sumaGeneral/6)
+	fmt.Println("Promedio general de la clase:", sumaGeneral/6)
 }

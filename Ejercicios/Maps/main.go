@@ -5,7 +5,7 @@ import "fmt"
 func ActividadGanadora(votos map[string]int) string {
 
 	var ganadora string
-	mayor := -1
+	mayor := 0
 
 	for actividad, cantidad := range votos {
 
@@ -58,11 +58,10 @@ func main() {
 
 		default:
 			fmt.Println("Opcion no valida")
-			i--
 		}
 	}
 
-	fmt.Println("\nRESULTADOS DE LA VOTACION")
+	fmt.Println("Resultados de votación")
 
 	for actividad, cantidad := range votos {
 
@@ -71,5 +70,5 @@ func main() {
 
 	ganadora := ActividadGanadora(votos)
 
-	fmt.Println("\nActividad con mas votos:", ganadora)
+	fmt.Println("Actividad con mas votos:", ganadora)
 }
