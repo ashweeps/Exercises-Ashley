@@ -36,7 +36,7 @@ func main() {
 
 	productos := []Producto{producto1, producto2, producto3}
 
-	fmt.Println("LISTA DE PRODUCTOS")
+	fmt.Println("Lista de productos")
 
 	for _, producto := range productos {
 

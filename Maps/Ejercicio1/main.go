@@ -9,14 +9,16 @@ import (
 
 func main() {
 
-	var frase string
-
 	fmt.Println("Ingrese una frase:")
-	frase, _ = bufio.NewReader(os.Stdin).ReadString('\n')
+
+	lector := bufio.NewScanner(os.Stdin)
+	lector.Scan()
+
+	frase := lector.Text()
 
 	palabras := strings.Fields(frase)
 
-	conteo := map[string]int{}
+	conteo := make(map[string]int)
 
 	for _, palabra := range palabras {
 		conteo[palabra]++
@@ -37,6 +39,10 @@ func main() {
 		}
 	}
 
-	fmt.Println("Palabra mas repetida:", palabraMayor)
-	fmt.Println("Cantidad de repeticiones:", mayor)
+	if mayor == 0 {
+		fmt.Println("No se ingresaron palabras")
+	} else {
+		fmt.Println("Palabra mas repetida:", palabraMayor)
+		fmt.Println("Cantidad de repeticiones:", mayor)
+	}
 }
