@@ -34,10 +34,9 @@ func (r *Router) Apagar() error {
 
 func (r *Router) Estatus() string {
 	if r.Encendido {
-		return r.Nombre + ":" + " está encendido"
-	} else {
-		return r.Nombre + ":" + " está apagado"
+		return r.Nombre + ": está encendido"
 	}
+	return r.Nombre + ": está apagado"
 }
 
 type Servidor struct {
@@ -63,33 +62,38 @@ func (s *Servidor) Apagar() error {
 
 func (s *Servidor) Estatus() string {
 	if s.Activo {
-		return s.Nombre + ":" + " está activo"
-	} else {
-		return s.Nombre + ":" + " está inactivo"
+		return s.Nombre + ": está activo"
 	}
+	return s.Nombre + ": está inactivo"
 }
 
 func OperarDispositivo(d Dispositivo) {
-	fmt.Println("Estatus inicial: ", d.Estatus())
+	fmt.Println("Estatus inicial:", d.Estatus())
+
 	err := d.Encender()
 	if err != nil {
-		fmt.Println("ERROR: ", err)
+		fmt.Println("ERROR:", err)
 	}
-	fmt.Println("Despues de haber encendido: ", d.Estatus())
-	er := d.Apagar()
-	if er != nil {
-		fmt.Println("ERROR: ", er)
+
+	fmt.Println("Después de encender:", d.Estatus())
+
+	err = d.Apagar()
+	if err != nil {
+		fmt.Println("ERROR:", err)
 	}
-	fmt.Println("Despues de haber apagado: ", d.Estatus())
+
+	fmt.Println("Después de apagar:", d.Estatus())
 }
 
 func main() {
 	router := &Router{
-		Nombre: "Cisco",
+		Nombre:    "Cisco",
+		Encendido: true,
 	}
 
 	servidor := &Servidor{
 		Nombre: "Servidor Web",
+		Activo: true,
 	}
 
 	fmt.Println("***** Router *****")
