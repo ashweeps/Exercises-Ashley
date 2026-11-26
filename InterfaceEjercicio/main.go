@@ -6,7 +6,6 @@ type InformacionProducto interface {
 	MostrarInfo() string
 }
 
-// Estructura base
 type ProductoBase struct {
 	ID       int
 	Nombre   string
@@ -14,87 +13,103 @@ type ProductoBase struct {
 	Cantidad int
 }
 
-// Método MostrarInfo
 func (p ProductoBase) MostrarInfo() string {
-	return fmt.Sprintln("ID:", p.ID,
-		"Nombre:", p.Nombre,
-		"Precio:", p.Precio,
-		"Cantidad:", p.Cantidad)
+	fmt.Printf("ID: %d | Nombre: %s | Precio: %.2f | Cantidad: %d",
+		p.ID, p.Nombre, p.Precio, p.Cantidad)
+
+	return "Producto: " + p.Nombre
 }
 
-// Estructura Electronico
 type Electronico struct {
 	ProductoBase
 	GarantiaMeses int
 }
 
-// Método del electrónico
 func (e Electronico) MostrarInfo() string {
-	return e.ProductoBase.MostrarInfo() +
-		fmt.Sprintln("Garantía:", e.GarantiaMeses, "meses")
+	producto := e.ProductoBase.MostrarInfo()
+
+	fmt.Printf(" | Garantía: %d meses", e.GarantiaMeses)
+
+	return producto
 }
 
-// Estructura Alimento
 type Alimento struct {
 	ProductoBase
 	FechaExpiracion string
 }
 
-// Método del alimento
 func (a Alimento) MostrarInfo() string {
-	return a.ProductoBase.MostrarInfo() +
-		fmt.Sprintln("Fecha de expiración:", a.FechaExpiracion)
+	producto := a.ProductoBase.MostrarInfo()
+
+	fmt.Printf(" | Fecha de expiración: %s", a.FechaExpiracion)
+
+	return producto
 }
 
-// Constructor de electrónicos
 func NuevoProductoElectronico(id int, nombre string, precio float64, cantidad int, garantia int) Electronico {
 	return Electronico{
-		ProductoBase:  ProductoBase{id, nombre, precio, cantidad},
+		ProductoBase: ProductoBase{
+			ID:       id,
+			Nombre:   nombre,
+			Precio:   precio,
+			Cantidad: cantidad,
+		},
 		GarantiaMeses: garantia,
 	}
 }
 
-// Constructor de alimentos
 func NuevoProductoAlimento(id int, nombre string, precio float64, cantidad int, fechaExp string) Alimento {
 	return Alimento{
-		ProductoBase:    ProductoBase{id, nombre, precio, cantidad},
+		ProductoBase: ProductoBase{
+			ID:       id,
+			Nombre:   nombre,
+			Precio:   precio,
+			Cantidad: cantidad,
+		},
 		FechaExpiracion: fechaExp,
 	}
 }
 
-// Estructura Inventario
 type Inventario struct {
 	Productos []InformacionProducto
 }
 
-// Agregar productos
 func (i *Inventario) AgregarProducto(p InformacionProducto) {
 	i.Productos = append(i.Productos, p)
 }
-
-// Listar productos
 func (i Inventario) ListarProductos() {
+
 	fmt.Println("INVENTARIO DE PRODUCTOS")
 
-	for _, p := range i.Productos {
-		fmt.Println(p.MostrarInfo())
+	for posicion, producto := range i.Productos {
+		fmt.Println("\nProducto:", posicion+1)
+		producto.MostrarInfo()
 	}
 }
-
 func main() {
 
 	inventario := Inventario{}
 
-	laptop := NuevoProductoElectronico(1, "Laptop", 800, 5, 24)
-	mouse := NuevoProductoElectronico(2, "Mouse", 15, 10, 12)
+	electronico1 := NuevoProductoElectronico(
+		1, "Laptop MSI", 850.50, 5, 24,
+	)
 
-	leche := NuevoProductoAlimento(3, "Leche", 1.50, 20, "15/12/2026")
-	yogurt := NuevoProductoAlimento(4, "Yogurt", 0.80, 15, "20/12/2026")
+	electronico2 := NuevoProductoElectronico(
+		2, "Cheescake de mora", 25.99, 15, 12,
+	)
 
-	inventario.AgregarProducto(laptop)
-	inventario.AgregarProducto(mouse)
-	inventario.AgregarProducto(leche)
-	inventario.AgregarProducto(yogurt)
+	alimento1 := NuevoProductoAlimento(
+		3, "Leche", 1.25, 30, "15/12/2026",
+	)
+
+	alimento2 := NuevoProductoAlimento(
+		4, "Yogurt", 0.85, 20, "10/12/2026",
+	)
+
+	inventario.AgregarProducto(electronico1)
+	inventario.AgregarProducto(electronico2)
+	inventario.AgregarProducto(alimento1)
+	inventario.AgregarProducto(alimento2)
 
 	inventario.ListarProductos()
 }
